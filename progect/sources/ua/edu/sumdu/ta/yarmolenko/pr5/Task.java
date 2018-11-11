@@ -100,9 +100,9 @@ public class Task {
      *
      * @param title is a string to assign to task's title
      */	
-    public void setTitle(String title) throws RuntimeException {
+    public void setTitle(String title) throws NullPointerException {
         if ((title == null) || (title.length() == 0)) {
-            throw new RuntimeException();
+            throw new NullPointerException();
         }
         taskTitle = title;
     }
@@ -139,9 +139,9 @@ public class Task {
      *
      * @param time is a number defining the task's starting moment
      */	
-    public void setTime(int time) throws RuntimeException {
+    public void setTime(int time) throws IllegalArgumentException {
         if (time < 0) {
-            throw new RuntimeException();
+            throw new IllegalArgumentException();
         }
             this.taskTime = time;
             this.taskStart = 0;
@@ -184,7 +184,7 @@ public class Task {
      * @param end is a number defining the ending moment of the alerting about task
      * @param repeat is a number defining the time interval for repeating the alert about the task
      */
-    public void setTime(int start, int end, int repeat) throws RuntimeException {
+    public void setTime(int start, int end, int repeat) throws IllegalArgumentException {
         if (start >= 0) {
             if (end > start) {
                 if (repeat > 0) {
@@ -194,13 +194,13 @@ public class Task {
                     this.taskRepeatInterval = repeat;
                     this.taskRepeated = true;
                 } else {
-                    throw new RuntimeException();
+                    throw new IllegalArgumentException();
                 }
             } else {
-                throw new RuntimeException();
+                throw new IllegalArgumentException();
             }
         } else {
-            throw new RuntimeException();
+            throw new IllegalArgumentException();
         }
     }
 
@@ -238,9 +238,9 @@ public class Task {
      * @param time is a number containing a moment of time
      * @return time of the next alert after the specified time or -1 if it can't happen
      */	
-    public int nextTimeAfter(int time) throws RuntimeException {
+    public int nextTimeAfter(int time) throws IllegalArgumentException {
         if (time < 0) {
-            throw new RuntimeException();
+            throw new IllegalArgumentException();
         }
         if (isActive()) {
             if (isRepeated()) {

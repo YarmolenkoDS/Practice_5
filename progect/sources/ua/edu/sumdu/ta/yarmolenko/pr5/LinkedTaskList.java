@@ -32,7 +32,7 @@ public class LinkedTaskList extends AbstractTaskList {
      *
      * @param task is an object of type task added to task list
      */	
-    public void add(Task task) throws RuntimeException {
+    public void add(Task task) throws NullPointerException {
         if (task != null) {   
             task.setTitle(START_OF_TASK_TITLE + task.getTitle());
             LinkedListNode lastElementOfList = new LinkedListNode(task);
@@ -48,7 +48,7 @@ public class LinkedTaskList extends AbstractTaskList {
                 counterOfTasksInList++; 
             }
         } else {
-            throw new RuntimeException();
+            throw new NullPointerException();
         }
     }
 
@@ -57,12 +57,12 @@ public class LinkedTaskList extends AbstractTaskList {
      *
      * @param task is an object of type task to be deleted in the task list
      */	
-    public void remove(Task task) throws RuntimeException {
+    public void remove(Task task) throws NullPointerException {
         if (task == null) {
-            throw new RuntimeException();
+            throw new NullPointerException();
         }
         if (firstElementOfList.listItemData == null){
-            throw new RuntimeException();
+            throw new NullPointerException();
         }
 
         while (firstElementOfList.listItemData.equals(task)) {
@@ -97,9 +97,9 @@ public class LinkedTaskList extends AbstractTaskList {
      * @param index is the task number in the list which should be returned (starting from zero)
      * @return the task whose index in the list is equal to the input
      */	
-    public Task getTask(int index) throws RuntimeException {
+    public Task getTask(int index) throws IndexOutOfBoundsException {
         if ((index >= size()) || (index < 0) || (size() == 0)) {
-            throw new RuntimeException();
+            throw new IndexOutOfBoundsException();
         }
         int tempIndex = 0;
         LinkedListNode currentElementOfList = firstElementOfList;
